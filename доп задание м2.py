@@ -22,4 +22,9 @@ for b in range(1, n):
             list_.append([ a, b])
             continue
 result = sorted(list_)
-print(*result)
+rezult1 = []
+for i in result:
+    for j in i:
+        rezult1.append(j)
+
+print(*rezult1, sep='')

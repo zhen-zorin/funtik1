@@ -1,27 +1,35 @@
-
-
 calls = 0
 def count_calls():
     global calls
-    calls = calls + 1
+    calls +=  1
     return calls
-print(calls)
-def string_info():
-    string = input('Введите текст: ')
+
+def string_info(string):
+    count_calls()
     string_1 = string.upper()
     string_2 = string.lower()
-    age = string + string_1 + string_2
+    return len(string), string_1, string_2
+
+def is_contains(string, list_to_search):
     count_calls()
-    print(age)
-    return age
-def is_contains():
-    string = input ('Введите строку: ')
-    list_to_search = input("Введите список через запятую: ")
-    first = string in list_to_search
-    count_calls()
-    print(first)
-    return first
-string_info()
-is_contains()
+    for i in list_to_search:
+        if i.lower() in string.lower() or string.lower() in i.lower():
+            return True
+        else:
+            return False
+
+
+
+rez1 = string_info('CAPYBARA')
+rez2 = string_info('Armageddon')
+is_rez1 = is_contains('Urban',['ban','BaNaN','urBAN'])
+is_rez2 = is_contains('cycle',['recycling','cyclic'])
+
+print(rez1)
+print(rez2)
+print(is_rez1)
+print(is_rez2)
 print(calls)
+
+
 

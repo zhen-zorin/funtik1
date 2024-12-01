@@ -8,6 +8,3 @@ def divide(first,second):
     return rez
 
 
-exit_  = divide(15 ,0)
-
-print(exit_)

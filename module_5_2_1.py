@@ -82,12 +82,6 @@ h1.__add__(10)
 print(h1.__eq__(h2))
 h1.__add__(10)
 h2.__add__(10)
-
-
-
-
-
-
 print(h1.__lt__(h2))
 print(h1.__le__(h2))
 print(h1.__gt__(h2))

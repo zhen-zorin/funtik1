@@ -6,5 +6,3 @@ def divide(first,second):
         div_ = first/second
         return div_
 
-rez = divide(9,3)
-print(rez)

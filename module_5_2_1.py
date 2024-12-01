@@ -73,8 +73,8 @@ class House:
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
-h1.go_to(5)
-h2.go_to(21)
+#h1.go_to(5)
+#h2.go_to(21)
 h1.__str__()
 h2.__str__()
 print(h1.__eq__(h2))
@@ -82,10 +82,10 @@ h1.__add__(10)
 print(h1.__eq__(h2))
 h1.__add__(10)
 h2.__add__(10)
-print(h1.__lt__(h2))
-print(h1.__le__(h2))
 print(h1.__gt__(h2))
 print(h1.__ge__(h2))
+print(h1.__lt__(h2))
+print(h1.__le__(h2))
 print(h1.__ne__(h2))
 
 

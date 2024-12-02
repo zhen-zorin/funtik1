@@ -83,9 +83,6 @@ h2 = House('ЖК Акация', 20)
 print(House.houses_history)
 h3 = House('ЖК Матрешки',20)
 print(House.houses_history)
-del h2
-del h3
-print(House.houses_history)
 #h1.go_to(5)
 #h2.go_to(21)
 #print(h1.__len__())
@@ -102,7 +99,9 @@ print(House.houses_history)
 #print(h1.__lt__(h2))
 #print(h1.__le__(h2))
 #print(h1.__ne__(h2))
-
+del h2
+del h3
+print(House.houses_history)
 
 
 

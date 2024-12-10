@@ -1,4 +1,5 @@
 class House:
+
     def __init__(self, name, number_of_floor):
         self.name = name
         self.number_of_floor = number_of_floor
@@ -11,22 +12,25 @@ class House:
                 print(floor)
 
     def __str__(self):
-        print(f'Название: {self.name}, кол-во этажей: {self.number_of_floor}')
+        return (f'Название: {self.name}, кол-во этажей: {self.number_of_floor}')
 
     def __len__(self ):
-        print( self.number_of_floor)
+        return self.number_of_floor
 
     def isinst(self, other):
-        if isinstance(other,int) and isinstance(self,int):
+        if other.number_of_floor % 1 == 0 :
             return True
-        elif isinstance(self,House) and isinstance(other,House):
-            return True
-        else:
-            return print('Разные типы данных')
+        elif isinstance(other,House):
+            return False
 
     def __eq__(self, other):# self, other -
         if self.isinst(other):
             if self.number_of_floor == other.number_of_floor :
+                return True
+            else:
+                return False
+        else:
+            if other == self.number_of_floor:
                 return True
             else:
                 return False
@@ -66,22 +70,37 @@ class House:
             else:
                 return False
     def __add__(self, value):
-        rez_floor = self.number_of_floor +value
-        self.number_of_floor = rez_floor
-        print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+        if value % 1 == 0:
+            rez_floor = self.number_of_floor + value
+            self.number_of_floor = rez_floor
+            print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+
+    def __iadd__(self, other):
+        if other % 1 == 0:
+            rez_floor = self.number_of_floor + other
+            self.number_of_floor = rez_floor
+            print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+
+    def __radd__(self, other):
+        if other % 1 == 0:
+            rez_floor = self.number_of_floor + other
+            self.number_of_floor = rez_floor
+            print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
 
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
-# h1.go_to(5)
-# h2.go_to(21)
-h1.__str__()
-h2.__str__()
+h1.go_to(5)
+h2.go_to(21)
+print(h1.__len__())
+print(h2.__len__())
+print(h1.__str__())
+print(h2.__str__())
 print(h1.__eq__(h2))
 h1.__add__(10)
 print(h1.__eq__(h2))
-h1.__add__(10)
-h2.__add__(10)
+h1.__iadd__(10)
+h2.__radd__(10)
 print(h1.__gt__(h2))
 print(h1.__ge__(h2))
 print(h1.__lt__(h2))

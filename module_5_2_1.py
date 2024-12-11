@@ -24,7 +24,7 @@ class House:
             return False
 
     def __eq__(self, other):# self, other -
-        if self.isinst(other):
+        if isinstance(other, House):
             if self.number_of_floor == other.number_of_floor :
                 return True
             else:
@@ -36,56 +36,54 @@ class House:
                 return False
 
     def __lt__(self, other):
-        if self.isinst(other):
+        if isinstance(other, House):
             if self.number_of_floor < other.number_of_floor :
                 return True
             else:
                 return False
 
     def __le__(self, other):
-        if self.isinst(other):
-            if self.number_of_floor <= other.number_of_floor :
+        if isinstance(other, int):
+            if self.number_of_floor <= other :
                 return True
             else:
                 return False
 
     def __gt__(self, other):
-        if self.isinst(other):
+        if isinstance(other, House):
             if self.number_of_floor > other.number_of_floor :
                 return True
             else:
                 return False
 
     def __ge__(self, other):
-        if self.isinst(other):
-            if self.number_of_floor >= other.number_of_floor :
+        if isinstance(other, int):
+            if self.number_of_floor >= other :
                 return True
             else:
                 return False
 
     def __ne__(self, other):
-        if self.isinst(other):
+        if isinstance(other, House):
             if self.number_of_floor != other.number_of_floor :
                 return True
             else:
                 return False
     def __add__(self, value):
-        if value % 1 == 0:
+        if isinstance(value, int ) and value % 1 == 0:
             rez_floor = self.number_of_floor + value
             self.number_of_floor = rez_floor
             print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+        else:
+            return False
 
     def __iadd__(self, other):
-        if other % 1 == 0:
-            rez_floor = self.number_of_floor + other
-            self.number_of_floor = rez_floor
-            print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+        return self.__add__( other)
+
 
     def __radd__(self, other):
-        if other % 1 == 0:
-            rez_floor = self.number_of_floor + other
-            self.number_of_floor = rez_floor
-            print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
+        return self.__add__(other)
+
 
 
 h1 = House('ЖК Эльбрус', 10)
@@ -102,9 +100,9 @@ print(h1.__eq__(h2))
 h1.__iadd__(10)
 h2.__radd__(10)
 print(h1.__gt__(h2))
-print(h1.__ge__(h2))
+print(h1.__ge__(14))
 print(h1.__lt__(h2))
-print(h1.__le__(h2))
+print(h1.__le__(35))
 print(h1.__ne__(h2))
 
 

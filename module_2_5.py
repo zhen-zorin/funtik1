@@ -1,4 +1,4 @@
-def get_matrix ():
+def get_matrix (n,m,value):
     matrix = []
     a = []
     for i in range(0, n) :

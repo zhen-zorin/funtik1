@@ -13,33 +13,30 @@ class Video:
         self.time_now = time_now  # Секунда остановки
         self.adult_mode = adult_mode  # Ограничение по возрасту
 
-
 class UrTube:
-
     def __init__(self):
         self.users = []  # Список объектов User
         self.videos = []  # Список объектов видео
         self.current_user = None  # Текуший пользователь
-        self.new_list = []
 
-    def log_in(self, login='', password=''):
+    def log_in(self, nickname, password):
         for user in self.users:
-            if login == user.nickname and hash(password) == user.password:
+            if self.nickname == user.nickname and self.password == user.password:
                 self.current_user = user
-                return print(f'Ползователь {login} совепшил успешный вход.')
+                return print(f'Ползователь {nickname} совепшил успешный вход.')
             else:
-                return print(f'Данные {login} и пароль не совподают. \n Попробуйте ещё раз.')
+                return print(f'Данные {nickname} и пароль не совподают. \n Попробуйте ещё раз.')
 
     def register(self, nickname, password, age):
-        self.nickname = nickname
-        self.password = hash(password)
-        self.age = age
+        new_user = []
         for i in self.users:
-            if nickname == i.nickname and self.password == i.password :
-                    return print(f'Пользователь {nickname} успешно вощел в систему.')
-           
-            elif nickname == i.nickname:
-                return print(f'Пользователь {nickname} уже существует')
+            if nickname == i.nickname:
+                if hash(password) == i.password:
+                    return print(f'Пользователь {nickname} успешно вошел в систему')
+                    continue
+                else:
+                    return print(f'Неверная пара логин {nickname} пароль')
+                    break
         new_user = User(nickname, hash(password), age)
         self.users.append(new_user)
         self.current_user = new_user
@@ -56,20 +53,17 @@ class UrTube:
             else:
                 return print("Такое видео уже существует")
 
-
     def get_videos(self, move):
+        new_list = []
         for i in self.videos:
-            if move.lower() not in i.title.lower():
-                return print('Названий с заданным фрагментом не найдено.')
-            else:
-                if i.title in self.new_list:
-                    continue
+            if move.lower() in i.title.lower():
+                if i.title not in new_list:
+                    new_list.append(i.title)
                 else:
-                    self.new_list.append(i.title)
-                return (self.new_list)
+                    return print('Названий с заданным фрагментом не найдено.')
+        return new_list
 
     def watch_video(self, move):
-        new_list1 = []
         if self.current_user == None:
             return print('Войдите в аккаунт, что бы смотреть видео')
         else:
@@ -82,9 +76,7 @@ class UrTube:
                             print(j, end=' ')
                             sleep(1)
                         return print(" Конец видео")
-
             return print("Нет такого видео")
-
 
 if __name__ == '__main__':
     ur = UrTube()
@@ -94,7 +86,6 @@ if __name__ == '__main__':
     # добавление видео
     ur.add(v1)
     ur.add(v2)
-
 
     # Проверка поиска
     print(ur.get_videos('лучший'))
@@ -110,10 +101,9 @@ if __name__ == '__main__':
     # Проверка входа в другой аккаунт
     ur.register('vasya_pupkin', 'F8098FM8fjm9jmi',55)
 
-    
     # Попытка воспроизведения несуществующего видео
     ur.watch_video('Лучший язык прогамирования 2024 года!')
 
-    # вход в систему
+    # проверка повторного входа
+    ur.register('urban_pythonist','iScX4vLCLb9YQavjAgF', 25)
     ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-

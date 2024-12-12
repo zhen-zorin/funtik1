@@ -29,53 +29,72 @@ class House:
                 return True
             else:
                 return False
-        else:
-            if other == self.number_of_floor:
+        elif isinstance(other, int):
+            if self.number_of_floor == other:
                 return True
-            else:
-                return False
+            return False
 
     def __lt__(self, other):
-        if isinstance(other, House):
-            if self.number_of_floor < other.number_of_floor :
+         if isinstance(other, House):
+            if self.number_of_floor == other.number_of_floor :
                 return True
             else:
                 return False
+         elif isinstance(other, int):
+            if self.number_of_floor == other:
+                return True
+            return False
 
     def __le__(self, other):
-        if isinstance(other, int):
-            if self.number_of_floor <= other :
+        if isinstance(other, House):
+            if self.number_of_floor == other.number_of_floor:
                 return True
             else:
                 return False
+        elif isinstance(other, int):
+            if self.number_of_floor == other:
+                return True
+            return False
 
     def __gt__(self, other):
         if isinstance(other, House):
-            if self.number_of_floor > other.number_of_floor :
+            if self.number_of_floor == other.number_of_floor:
                 return True
             else:
                 return False
+        elif isinstance(other, int):
+            if self.number_of_floor == other:
+                return True
+            return False
 
     def __ge__(self, other):
-        if isinstance(other, int):
-            if self.number_of_floor >= other :
+        if isinstance(other, House):
+            if self.number_of_floor == other.number_of_floor:
                 return True
             else:
                 return False
+        elif isinstance(other, int):
+            if self.number_of_floor == other:
+                return True
+            return False
 
     def __ne__(self, other):
         if isinstance(other, House):
-            if self.number_of_floor != other.number_of_floor :
+            if self.number_of_floor == other.number_of_floor:
                 return True
             else:
                 return False
+        elif isinstance(other, int):
+            if self.number_of_floor == other:
+                return True
+            return False
     def __add__(self, value):
-        if isinstance(value, int ) and value % 1 == 0:
+        if isinstance(value, int ):
             rez_floor = self.number_of_floor + value
             self.number_of_floor = rez_floor
             print(f'Название: {self.name}, кол-во этажей: {rez_floor}')
         else:
-            return False
+            return self.number_of_floor
 
     def __iadd__(self, other):
         return self.__add__( other)

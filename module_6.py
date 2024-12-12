@@ -13,7 +13,6 @@ class Animal:
             print(f'{self.name} не стал есть {food.name}')
 
 
-
 class Plant:
     def __init__(self, name, edible=False):
         self.edible = False  # съедобность
@@ -39,7 +38,6 @@ class Fruit(Plant):
         super().__init__(name)
         self.edible = True  # съедобность
         self.name = name
-
 
 
 class Flower(Plant):

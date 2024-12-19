@@ -15,29 +15,27 @@ class Video:
 
 class UrTube:
     def __init__(self):
+        self.password = None
         self.users = []  # Список объектов User
         self.videos = []  # Список объектов видео
         self.current_user = None  # Текуший пользователь
 
     def log_in(self, nickname, password):
         for user in self.users:
-            if self.nickname == user.nickname and self.password == user.password:
-                self.current_user = user
+            if nickname == user.nickname and password == user.password:
+                current_user = user
                 return print(f'Ползователь {nickname} совепшил успешный вход.')
             else:
                 return print(f'Данные {nickname} и пароль не совподают. \n Попробуйте ещё раз.')
 
     def register(self, nickname, password, age):
-        new_user = []
+
         for i in self.users:
-            if nickname == i.nickname:
-                if hash(password) == i.password:
-                    return print(f'Пользователь {nickname} успешно вошел в систему')
-                    continue
-                else:
-                    return print(f'Неверная пара логин {nickname} пароль')
-                    break
-        new_user = User(nickname, hash(password), age)
+            if nickname == i.nickname:# при пустом списке i.nickname не существует и сравнение невозможно
+                # поэтому логика регистрации после "else" не срабатывает
+                return print('Такой пользователь уже существует')
+                continue
+        new_user = User(nickname, password, age)
         self.users.append(new_user)
         self.current_user = new_user
         return self.current_user, print(f'Регистрация "{new_user.nickname}" прошла успешно')
@@ -104,6 +102,3 @@ if __name__ == '__main__':
     # Попытка воспроизведения несуществующего видео
     ur.watch_video('Лучший язык прогамирования 2024 года!')
 
-    # проверка повторного входа
-    ur.register('urban_pythonist','iScX4vLCLb9YQavjAgF', 25)
-    ur.register('vasya_pupkin', 'lolkekcheburek', 13)

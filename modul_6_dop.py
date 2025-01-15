@@ -7,12 +7,17 @@ class Figure:
     def __init__(self,  color, *sides):
         self.filled = False # закрашеный
         self.__sides = [] # список сторон, целые числа
-        self.__color = list(color) # список цветов в формате RGB
+        self.__color = [] # список цветов в формате RGB
 
         if not (self.__is_valid_sides(*sides)):
             self.__sides = [1] * self.sides_count
         else:
             self.__sides = list(sides)
+
+        if self.__is_valid_color(list(color)[0], list(color)[1], list(color)[-1]):
+            self.__color = list(color)
+        else:
+            self.__color = [0, 0, 0]
 
     def get_color(self):
         return self.__color
@@ -71,7 +76,7 @@ class Cube(Figure):
 
     def __init__(self, color, edge_length):
         super().__init__(color)
-        if  isinstance(edge_length, (int, float)) or edge_length <= 0:
+        if  isinstance(edge_length, (int, float)):
             self.set_sides(*[edge_length] * self.sides_count)
 
     def get_volume(self):
